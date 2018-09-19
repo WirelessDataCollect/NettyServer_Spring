@@ -16,4 +16,9 @@
        <property name="listenPort" value="5001"/>
        <property name="threadName" value="Device-Thread"/>
    </bean>
+   
+   <!--  
+   <bean id="dataProcessor" class="com.nesc.NettyServer.DataProcessor">
+   		<constructor-arg ref="DataProcessor"/>
+   </bean>>-->
 </beans>

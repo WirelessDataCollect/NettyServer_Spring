@@ -40,7 +40,6 @@ public class DataProcessor {
 	private long adc_count;//数据个数（ADC数据）
 	private short io1,io2;//io数字电平
 
-	
 	private MyMongoDB mongodb;
 	/**
 	* 数据处理obj的构造函数
