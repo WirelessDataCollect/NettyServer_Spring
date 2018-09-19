@@ -15,10 +15,10 @@ public class App{
     public static void main(String[] args) { 
 //    	TestTools test = new TestTools();
 //    	test.start();
-    	ApplicationContext pcServerContext = new ClassPathXmlApplicationContext("beans.xml");
-    	RunPcServer pc_server = (RunPcServer)pcServerContext.getBean("runPcServer");
+    	ApplicationContext bean = new ClassPathXmlApplicationContext("beans.xml");
+    	RunPcServer pc_server = (RunPcServer)bean.getBean("runPcServer");
     	pc_server.start();
-    	RunDeviceServer device_server = new RunDeviceServer("Device-Thread");
+    	RunDeviceServer device_server = (RunDeviceServer)bean.getBean("runDeviceServer");
     	device_server.start();   	
     }
 }

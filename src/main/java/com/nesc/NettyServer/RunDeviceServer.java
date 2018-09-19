@@ -33,23 +33,34 @@ import io.netty.util.ReferenceCountUtil;
 */
 public class RunDeviceServer implements Runnable{
 	private String protocol = "UDP";
-	private int listen_port = 5001;
+	private int listenPort = 5001;
 	private Thread t;
-	private String threadName;
+	private String threadName = "Device-Thread";
 	private volatile static int packsNum = 0;
-	
 	/**
-	* 构造方法。
-	*
-	* @param name 线程名称 
-	* @param port 面向设备的端口
-	* @throws none
-	*/
-	RunDeviceServer( String name) {
-		threadName = name;
-		System.out.println("Creating thread:" +  threadName );
-//		getProtocolInfo();
+	 * 设置连接设备的端口。bean的set方法，bean会自动调用
+	 * 
+	 * @param port
+	 */
+	public void setListenPort(int port) {
+		listenPort = 5001;
 	}
+	/**
+	 * 设置连接设备的协议。bean的set方法，bean会自动调用
+	 * 
+	 * @param proto
+	 */
+	public void setProtocol(String proto) {
+		protocol = proto;
+	}
+	/**
+	 * 设置线程名称。bean的set方法，bean会自动调用
+	 * 
+	 * @param name
+	 */
+	public void setThreadName(String name) {
+		threadName = name;
+	}	
 	/**
 	* 清除packsNum1s。
 	*
@@ -88,13 +99,13 @@ public class RunDeviceServer implements Runnable{
             	System.out.println("Choose port from 5000~9000...");
             	while (scan.hasNextLine()) {
             		try{
-            			listen_port = Integer.parseInt(scan.nextLine());
-            			if(listen_port<5000||listen_port>9000) {//如果超出了这个port界限，则要重新输入
+            			listenPort = Integer.parseInt(scan.nextLine());
+            			if(listenPort<5000||listenPort>9000) {//如果超出了这个port界限，则要重新输入
             				System.out.println("Error:Please input port number from 5000~9000!");
             				continue;
             			}
             			else {
-            				System.out.println("面向设备运行端口：" + this.listen_port);
+            				System.out.println("面向设备运行端口：" + this.listenPort);
             				break;//退出while(得到port)
             			}		
             		}catch(NumberFormatException nfe) {
@@ -184,14 +195,14 @@ public class RunDeviceServer implements Runnable{
 	}  
 	@Override
 	public void run() {	
-    	System.out.println("server protocol = "+protocol);
-    	System.out.println("server listen port = "+listen_port);
+    	System.out.println("Protocol for devices: "+protocol);
+    	System.out.println("Listen port for devices: "+listenPort);
         switch(protocol) {
         case "UDP":
-        	runUdp(listen_port);
+        	runUdp(listenPort);
         	break;
         case "TCP":
-        	runTcp(listen_port);
+        	runTcp(listenPort);
         	break;
         default:
         	System.out.println("Error:Bad protocal!");
@@ -241,7 +252,7 @@ class UDP_ServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println(
-                "Device UDP channel " + ctx.channel().toString() + " create");
+                "Device UDP channel " + ctx.channel().toString() + " created");
     }
     /**
      * 当Netty由于IO错误或者处理器在处理事件时抛出异常时调用
@@ -283,7 +294,7 @@ class TCP_ServerHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {   //1
         System.out.println(
-                "Device TCP channel " + ctx.channel().toString() + " create");
+                "Device TCP channel " + ctx.channel().toString() + " created");
     }
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {

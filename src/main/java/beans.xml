@@ -11,4 +11,9 @@
        <property name="listenPort" value="8081"/>
    </bean>
 
+   <bean id="runDeviceServer" class="com.nesc.NettyServer.RunDeviceServer">
+       <property name="protocol" value="UDP"/>
+       <property name="listenPort" value="5001"/>
+       <property name="threadName" value="Device-Thread"/>
+   </bean>
 </beans>

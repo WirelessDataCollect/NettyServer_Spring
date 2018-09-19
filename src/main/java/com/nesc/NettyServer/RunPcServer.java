@@ -30,8 +30,8 @@ import io.netty.util.ReferenceCountUtil;
 */
 public class RunPcServer implements Runnable{
 	private Thread t;
-	private String threadName;
-	private int listenPort;
+	private String threadName = "PC-Thread";
+	private int listenPort = 8081;
 	public Channel ch = null;
 	private volatile static Map<String,Channel> ch_map = new ConcurrentHashMap<String,Channel>();//存储PC连接的通道<PC[num],channel>
 
@@ -42,6 +42,7 @@ public class RunPcServer implements Runnable{
 	 */
 	public void setListenPort(int port) {
 		listenPort = port;
+		System.out.println("Listen port for PC: "+listenPort);
 	}
 	/**
 	 * 设置线程名称。bean的set方法，bean会自动调用。
