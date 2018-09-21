@@ -19,6 +19,7 @@ public class MyMongoDB{
 	protected MongoClient mongoClient;
 	protected MongoDatabase mongoDatabase;
 	private final String col_name = "data";
+	private final String dbname = "udp";
 	
 	/**
 	* MongoDB数据库类的构造函数
@@ -27,7 +28,7 @@ public class MyMongoDB{
 	* @return 无
 	* @throws 无
 	*/
-	MyMongoDB(String dbname) {
+	MyMongoDB() {
 		try{
 			if(collection == null) {
 				/* 连接到 mongodb 服务*/

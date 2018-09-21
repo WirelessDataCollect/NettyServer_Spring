@@ -48,8 +48,8 @@ public class DataProcessor {
 	* @return 无
 	* @throws 无
 	*/		
-	DataProcessor(String dbname) {
-		mongodb = new MyMongoDB(dbname);
+	public void setMongodb(MyMongoDB myMongoDB) {
+		mongodb = myMongoDB;//这个mongodb是依赖注入的
 	}
 	SingleResultCallback<Void> callback;
 	/**

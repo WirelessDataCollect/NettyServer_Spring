@@ -17,8 +17,13 @@
        <property name="threadName" value="Device-Thread"/>
    </bean>
    
-   <!--  
+   
+   
    <bean id="dataProcessor" class="com.nesc.NettyServer.DataProcessor">
-   		<constructor-arg ref="DataProcessor"/>
-   </bean>>-->
+   		<property name="mongodb" ref="myMongoDB"/>
+   </bean>
+   <bean id="myMongoDB" class="com.nesc.NettyServer.MyMongoDB">
+   </bean>   
+   
+   
 </beans>
