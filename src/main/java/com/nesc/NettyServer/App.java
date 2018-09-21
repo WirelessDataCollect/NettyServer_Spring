@@ -13,19 +13,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;;
 */
 public class App{
 	public static ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-//	/**
-//	 * 获取bean的一个应用上下文
-//	 * @return context
-//	 */
-//	public ApplicationContext getApplicationContext() {
-//		return context;
-//	}
     public static void main(String[] args) { 
-//    	TestTools test = new TestTools();
-//    	test.start();	
+    	TestTools test = new TestTools();
+    	test.start();	
     	RunPcServer pc_server = (RunPcServer)context.getBean("runPcServer");
     	pc_server.start();
     	RunDeviceServer device_server = (RunDeviceServer)context.getBean("runDeviceServer");
     	device_server.start();   	
     }
+	/**
+	 * 获取bean的一个应用上下文
+	 * @return context
+	 */
+	public static ApplicationContext getApplicationContext() {
+		return context;
+	}
 }

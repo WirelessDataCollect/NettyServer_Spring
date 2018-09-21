@@ -16,7 +16,7 @@ import io.netty.util.ReferenceCountUtil;
 public class TCP_ServerHandler extends ChannelInboundHandlerAdapter {
 	private DataProcessor processor;
 	TCP_ServerHandler(){
-		processor =(DataProcessor) App.context.getBean("dataProcessor");//获取一个数据处理器
+		processor =(DataProcessor) App.getApplicationContext().getBean("dataProcessor");//获取一个数据处理器
 	}
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

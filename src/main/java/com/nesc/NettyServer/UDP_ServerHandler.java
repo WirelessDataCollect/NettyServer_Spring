@@ -16,7 +16,7 @@ import io.netty.channel.socket.DatagramPacket;
 public class UDP_ServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 	private DataProcessor processor;
 	UDP_ServerHandler(){
-		processor =(DataProcessor) App.context.getBean("dataProcessor");
+		processor =(DataProcessor) App.getApplicationContext().getBean("dataProcessor");
 	}
 	
 	@Override

@@ -18,12 +18,13 @@
    </bean>
    
    
-   
+   <!-- 用于依赖注入 -->
    <bean id="dataProcessor" class="com.nesc.NettyServer.DataProcessor">
    		<property name="mongodb" ref="myMongoDB"/>
    </bean>
-   <bean id="myMongoDB" class="com.nesc.NettyServer.MyMongoDB">
-   </bean>   
-   
+   <bean id="myMongoDB" class="com.nesc.NettyServer.MyMongoDB">  <!-- 这一段写在dataProcessor的property内部也可以，即注入内部Bean -->
+   		<property name="dbName" value="udp"/>
+   		<property name="colName" value="data"/>
+   </bean>
    
 </beans>
