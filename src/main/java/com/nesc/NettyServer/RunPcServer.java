@@ -53,13 +53,6 @@ public class RunPcServer implements Runnable{
 		threadName = name;
 	}
 	/**
-	* 构造方法。面向PC上位机的端口默认为8080。
-	*
-	* @param name 线程名称 
-	* 
-	* @throws none
-	*/
-	/**
 	 * 获取保存同服务器连接的PC的通道
 	 * @return {@link Map}
 	 */

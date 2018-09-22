@@ -3,28 +3,34 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+	<context:annotation-config/>  <!-- 基于注解的配置 -->
+	
    <bean id="runPcServer" class="com.nesc.NettyServer.RunPcServer">
        <property name="threadName" value="PC-Thread"/>
        <property name="listenPort" value="8081"/>
    </bean>
+
 
    <bean id="runDeviceServer" class="com.nesc.NettyServer.RunDeviceServer">
        <property name="protocol" value="UDP"/>
        <property name="listenPort" value="5001"/>
        <property name="threadName" value="Device-Thread"/>
    </bean>
-   
-   
-   <!-- 用于依赖注入 -->
+
+ 
+   <!-- 用于依赖注入 -->   
    <bean id="dataProcessor" class="com.nesc.NettyServer.DataProcessor">
    		<property name="mongodb" ref="myMongoDB"/>
    </bean>
-   <bean id="myMongoDB" class="com.nesc.NettyServer.MyMongoDB">  <!-- 这一段写在dataProcessor的property内部也可以，即注入内部Bean -->
+   <bean id="myMongoDB" class="com.nesc.NettyServer.MyMongoDB"
+   		init-method="init" destroy-method="destroy">  <!-- 这一段写在dataProcessor的property内部也可以，即注入内部Bean -->
    		<property name="dbName" value="udp"/>
    		<property name="colName" value="data"/>
-   </bean>
-   
+   </bean> 
 </beans>
