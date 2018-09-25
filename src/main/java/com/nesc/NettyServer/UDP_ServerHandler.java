@@ -24,9 +24,10 @@ public class UDP_ServerHandler extends SimpleChannelInboundHandler<DatagramPacke
 	protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {  //channelRead0在退出前，后面的不会打断
 		RunDeviceServer.incPacksNum();  //每次进入数据接受，都要更新包裹数目
 		//如果数字超过了127,则会变成负数为了解决这个问题需要用getUnsignedByte
-		ByteBuf temp = msg.content();
-		DeviceServerTools.send2Pc(temp.copy());
-		processor.dataProcess(temp);
+		ByteBuf temp1 = msg.content();
+		ByteBuf temp2 = msg.content();
+		DeviceServerTools.send2Pc(temp1);
+		processor.dataProcess(temp2);
 
 	}
 	/**
