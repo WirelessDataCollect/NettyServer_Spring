@@ -23,7 +23,7 @@ public class TCP_ServerHandler extends ChannelInboundHandlerAdapter {
         try {
         	RunDeviceServer.incPacksNum();//1秒钟内的包++
     		ByteBuf temp = (ByteBuf)msg;
-    		DeviceServerTools.send2Pc(temp.copy());
+    		DeviceServerTools.send2Pc(temp);
     		processor.dataProcess(temp);
         } finally {
             // 抛弃收到的数据
