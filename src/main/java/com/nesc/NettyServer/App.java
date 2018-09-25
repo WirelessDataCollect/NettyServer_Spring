@@ -13,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;;
 */
 public class App{
 	public static ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	
     public static void main(String[] args) { 
     	TestTools test = new TestTools();
     	test.start();	

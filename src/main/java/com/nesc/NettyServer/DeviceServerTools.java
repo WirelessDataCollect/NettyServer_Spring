@@ -5,6 +5,8 @@ import java.util.Map;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 
 /**
 * 
@@ -23,7 +25,15 @@ public class DeviceServerTools{
 		synchronized(RunPcServer.getChMap()) {
 			for(Iterator<Map.Entry<String,Channel>> item = RunPcServer.getChMap().entrySet().iterator();item.hasNext();) {
 				Map.Entry<String,Channel> entry = item.next();
-				entry.getValue().pipeline().writeAndFlush(temp.copy());
+				ChannelFuture future = entry.getValue().pipeline().writeAndFlush(temp.copy());
+				future.addListener(new ChannelFutureListener(){
+					@Override
+					public void operationComplete(ChannelFuture f) {
+						if(!f.isSuccess()) {
+							f.cause().printStackTrace();
+						}
+					}
+				});
 			}	
 		}
 	}

@@ -2,12 +2,13 @@ package com.nesc.NettyServer;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelOutboundHandler;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
 
 /**
 * 
-* UDP服务器的输入处理器函数
+* UDP服务器的输入处理器函数.如果给多个Pipeline,需要给类添加@Sharable
 *
 * @author  nesc528
 * @Date    2018-9-7
