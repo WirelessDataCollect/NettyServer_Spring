@@ -25,7 +25,8 @@ public class DeviceServerTools{
 		synchronized(RunPcServer.getChMap()) {
 			for(Iterator<Map.Entry<String,Channel>> item = RunPcServer.getChMap().entrySet().iterator();item.hasNext();) {
 				Map.Entry<String,Channel> entry = item.next();
-				ChannelFuture future = entry.getValue().pipeline().writeAndFlush(temp.copy());
+				ByteBuf temp1 = temp.copy();
+				ChannelFuture future = entry.getValue().pipeline().writeAndFlush(temp1);
 				future.addListener(new ChannelFutureListener(){
 					@Override
 					public void operationComplete(ChannelFuture f) {
@@ -34,6 +35,7 @@ public class DeviceServerTools{
 						}
 					}
 				});
+				temp1.release();//释放
 			}	
 		}
 	}
