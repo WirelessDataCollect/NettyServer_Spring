@@ -13,13 +13,13 @@
 	
    <bean id="runPcServer" class="com.nesc.NettyServer.RunPcServer">
        <property name="threadName" value="PC-Thread"/>
-       <property name="listenPort" value="8081"/>
+       <property name="listenPort" value="8080"/>
    </bean>
 
 
    <bean id="runDeviceServer" class="com.nesc.NettyServer.RunDeviceServer">
        <property name="protocol" value="UDP"/>
-       <property name="listenPort" value="5001"/>
+       <property name="listenPort" value="5004"/>
        <property name="threadName" value="Device-Thread"/>
    </bean>
 

@@ -35,7 +35,6 @@ public class DeviceServerTools{
 						}
 					}
 				});
-				temp1.release();//释放
 			}	
 		}
 	}

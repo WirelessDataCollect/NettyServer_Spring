@@ -152,7 +152,7 @@ class TCP_ServerHandler4PC  extends ChannelInboundHandlerAdapter {
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		Map<String,Channel> map_temp = RunPcServer.getChMap();
 
-		map_temp.remove(ctx.channel().toString());
+		map_temp.remove(ctx.channel().remoteAddress().toString());
 		System.out.println("PC "+ctx.channel().remoteAddress().toString()+" disconnected!");
 		ctx.fireChannelInactive();
 	}

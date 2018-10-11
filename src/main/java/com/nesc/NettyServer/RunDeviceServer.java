@@ -38,7 +38,7 @@ public class RunDeviceServer implements Runnable{
 	 * @param port
 	 */
 	public void setListenPort(int port) {
-		listenPort = 5001;
+		listenPort = port;
 	}
 	/**
 	 * 设置连接设备的协议。bean的set方法，bean会自动调用
